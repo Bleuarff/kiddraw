@@ -1,0 +1,24 @@
+#color-picker div{
+  width: 2em;
+  height: 2em;
+  border-radius: 4px;
+}
+
+#color-picker .blue{
+  background: blue;
+}
+
+#color-picker .red{
+  background: red;
+}
+
+#color-picker .green{
+  background: green;
+}
+
+#board {
+  /* width: 640px;
+  height: 400px; */
+  border: 2px solid black;
+  border-radius: 4px;
+}

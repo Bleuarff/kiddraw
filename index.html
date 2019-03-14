@@ -1,0 +1,26 @@
+<!doctype HTML>
+<html>
+  <head>
+    <title>Kid Draw</title>
+    <meta charset="utf-8">
+    <script src="/lib/vue.js"></script>
+    <script src="/app.js"></script>
+    <link rel="stylesheet" href="/style.css"></link>
+  </head>
+  <body>
+    <div id="app">
+      <div id="color-picker">
+        <div class="blue"></div>
+        <div class="red"></div>
+        <div class="green"></div>
+      </div>
+    </div>
+
+    <canvas id="board" width="640" height="400">
+    </canvas>
+
+    <script>
+      vm.$mount('#app')
+    </script>
+  </body>
+</html>
