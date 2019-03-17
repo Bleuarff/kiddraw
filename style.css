@@ -1,3 +1,7 @@
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
 #color-picker div{
   width: 2em;
   height: 2em;
@@ -19,6 +23,13 @@
 #board {
   /* width: 640px;
   height: 400px; */
+  /* border: 2px solid black;
+  border-radius: 4px; */
+}
+
+#border{
   border: 2px solid black;
   border-radius: 4px;
+  width: 644px;
+  height: 404px;
 }
