@@ -7,11 +7,11 @@ class Fill{
     this.data = data
     this.width = width
     this.height = height
+
+    this.bitWidth = width * 4
   }
 
   fill(x, y, hexTargetColor){
-    this.x = x
-    this.y = y
 
     const pos = (y * this.width + x) * 4
     // console.log("pos: " + pos)
@@ -24,16 +24,13 @@ class Fill{
     this.pxQueue.push(pos)
 
     const start = Date.now()
-    let iters = 0
+    let iters = 0, processed
 
     do{
-      iters += this._processQueue()
-      const duration = Date.now() - this.pxQueue.lastInsert
-      // if (duration > 100)
-      //   console.log(`SLOW ${duration}ms`)
+      processed = this._processQueue()
+      iters += processed
     }
-    // while (iters < this.width * this.height)
-    while(Date.now() - this.pxQueue.lastInsert < 500)
+    while (processed === 1)
 
     const duration = Date.now() - start
     console.log(`fill: ${duration}ms / ${iters} iterations`)
@@ -53,52 +50,40 @@ class Fill{
     const pxColor = this.getPixelColor(pxCoord)
 
     if (pxColor.equals(this.srcColor)){
-      this.setPixelColor(pxCoord, this.targetColor)
-      this.addNeighbors(pxCoord)
+      let added = this.addNeighbors(pxCoord)
+      if (added > 0)
+        this.setPixelColor(pxCoord, this.targetColor)
+      else
+        this.setPixelColor(pxCoord, new Color(0, 255, 0))
     }
     return 1
   }
 
   // adds neighbor pixels to the queue
   addNeighbors(coord){
-    const top = coord - this.width * 4
-    const bottom = coord + this.width * 4
-    const left = coord - 4
-    const right = coord + 4
-    const topLeft = top - 4
-    const topRight = top + 4
-    const bottomLeft = bottom - 4
-    const bottomRight = bottom + 4
+    var neighborCount = 0
 
-    const topLim = 0,
-          bottomLim = this.data.length,
-          leftLim = this.y * this.width * 4,
-          rightLim = (this.y + 1) * this.width * 4
+    if (coord >= this.bitWidth){
+      const top = coord - this.bitWidth
+      neighborCount += this.pxQueue.push(top)
+    }
 
-    if (top > topLim)
-      this.pxQueue.push(top)
+    if (coord % (this.bitWidth) < 639 * 4){
+      const right = coord + 4
+      neighborCount += this.pxQueue.push(right)
+    }
 
-    if (bottom < bottomLim)
-      this.pxQueue.push(bottom)
+    if (coord < 399*640*4){
+      const bottom = coord + this.bitWidth
+      neighborCount += this.pxQueue.push(bottom)
+    }
 
-    if (left >=  leftLim)
-      this.pxQueue.push(left)
+    if (coord % (this.bitWidth) > 0){
+      const left = coord - 4
+      neighborCount += this.pxQueue.push(left)
+    }
 
-    if (right < rightLim)
-      this.pxQueue.push(right)
-
-    if (topLeft > topLim && topLeft >= leftLim)
-      this.pxQueue.push(topLeft)
-
-    if (topRight > topLim && topRight < rightLim)
-      this.pxQueue.push(topRight)
-
-    if (bottomLeft < bottomLim && bottomLeft >= leftLim)
-      this.pxQueue.push(bottomLeft)
-
-    if (bottomRight < bottomLim && bottomRight < rightLim)
-      this.pxQueue.push(bottomRight)
-
+    return neighborCount
   }
 
   // returns color of pixel at given position
@@ -122,12 +107,11 @@ class Fill{
     this.data[coord + 3] = 255 // should be removable if image file has no transparency
   }
 
-  // gets x,y corrd for given position
+  // gets x,y coord for given position
   getIndexCoord(idx){
-    const pos = idx / 4
-    return {
-      y: Math.floor(pos / this.width),
-      x: pos - y * this.width
-    }
+    const pos = idx / 4,
+          y = Math.floor(pos / this.width),
+          x = pos - y * this.width
+    return { y: y, x: x }
   }
 }

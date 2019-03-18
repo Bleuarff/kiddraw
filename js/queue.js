@@ -10,7 +10,6 @@ const PxState = {
 class Queue{
   pushedCount = 0
   addedCount = 0
-  _lastInsert = 0
   _store = []
 
   constructor(size){
@@ -24,6 +23,7 @@ class Queue{
   }
 
   push(val){
+    let c = 0
     this.pushedCount++
     const idx = val / 4
     switch(this._map[idx]){
@@ -31,19 +31,16 @@ class Queue{
         this._store.push(val)
         this._map[idx] = PxState.ADDED
         this.addedCount++
-        this._lastInsert = Date.now()
+        c = 1
         break
       default:
         break
     }
+    return c
   }
 
   shift(){
     return this._store.shift()
-  }
-
-  get lastInsert(){
-    return this._lastInsert
   }
 
   get stats(){
