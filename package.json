@@ -1,0 +1,25 @@
+{
+  "name": "kiddraw",
+  "version": "1.0.0",
+  "description": "simple paint app for kids",
+  "main": "index.html",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bleuarff/kiddraw.git"
+  },
+  "author": "Bleuarff",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bleuarff/kiddraw/issues"
+  },
+  "homepage": "https://github.com/bleuarff/kiddraw#readme",
+  "devDependencies": {
+    "gulp": "^4.0.0"
+  }
+}

@@ -27,10 +27,11 @@ class Color{
       return (this.r === col.r && this.g === col.g && this.b === col.b)
     }
 
+    // returns a new Color object from an hexadecimal-formatted color with leading hash, e.g. '#123456'
     static fromHex(hexColor){
-      const r = parseInt(hexColor.substr(0, 2), 16),
-            g = parseInt(hexColor.substr(2, 2), 16),
-            b = parseInt(hexColor.substr(4, 2), 16)
+      const r = parseInt(hexColor.substr(1, 2), 16),
+            g = parseInt(hexColor.substr(3, 2), 16),
+            b = parseInt(hexColor.substr(5, 2), 16)
       return new Color(r, g, b)
     }
 

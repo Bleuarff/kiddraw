@@ -2,14 +2,11 @@
 
 var vm = new Vue({
   data :{
-    color: 'ff0000',
+    color: '#ff0000',
     canvas: null,
     ctx: null,
     width: 640,
     height: 400,
-
-    // x: 0,
-    // y: 0
   },
   mounted: async function(){
     this.canvas = document.getElementById('board')
@@ -41,6 +38,11 @@ var vm = new Vue({
         x: event.clientX - rect.left,
         y: event.clientY - rect.top
       }
+    },
+
+    // Sets the current color 
+    setColor: function(color){
+      this.color = color
     }
   }
 })
