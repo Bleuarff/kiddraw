@@ -12,11 +12,12 @@ class Fill{
   }
 
   fill(x, y, hexTargetColor){
-
     const pos = (y * this.width + x) * 4
-    // console.log("pos: " + pos)
-
     this.srcColor = this.getPixelColor(pos)
+
+    if (this.srcColor.equals(new Color(0, 0, 0, )))
+      return null
+
     this.targetColor = Color.fromHex(hexTargetColor)
 
     // initialize queue of pixels to process

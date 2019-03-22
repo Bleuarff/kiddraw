@@ -28,6 +28,9 @@ var vm = new Vue({
       const filler = new Fill(data, this.width, this.height)
       const newData = filler.fill(pos.x, pos.y, this.color)
 
+      if (newData == null)
+        return
+
       var newImg = new ImageData(newData, this.width)
       this.ctx.putImageData(newImg, 0, 0)
     },
@@ -40,7 +43,7 @@ var vm = new Vue({
       }
     },
 
-    // Sets the current color 
+    // Sets the current color
     setColor: function(color){
       this.color = color
     }
