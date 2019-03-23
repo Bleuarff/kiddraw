@@ -2,6 +2,7 @@
 
 var vm = new Vue({
   data :{
+    defaultDrawing: '/models/poule.png',
     color: '#ff0000',
     canvas: null,
     ctx: null,
@@ -14,7 +15,7 @@ var vm = new Vue({
 
     let img = new Image(this.width, this.height)
     await new Promise(resolve => {
-      img.src = '/models/star.png'
+      img.src = this.defaultDrawing
       img.onload = resolve
     })
     this.ctx.drawImage(img, 0, 0, this.width, this.height, 0, 0, this.width, this.height);

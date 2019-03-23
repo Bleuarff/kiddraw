@@ -9,7 +9,7 @@ Vue.component('my-palette', {
     return {
       // list available colors
       palette: ['#ffffff', '#2f2f2f', '#ff0000', '#00ff00', '#0000ff'],
-      selectedIdx: 0,
+      selectedIdx: 2,
     }
   },
   methods: {
