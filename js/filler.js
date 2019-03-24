@@ -1,7 +1,6 @@
 'use strict'
 
 
-
 class Fill{
   constructor(data, width, height){
     this.data = data
@@ -15,10 +14,12 @@ class Fill{
     const pos = (y * this.width + x) * 4
     this.srcColor = this.getPixelColor(pos)
 
-    if (this.srcColor.equals(new Color(0, 0, 0, )))
+    // do not process black pixels (borders)
+    if (this.srcColor.equals(new Color(0, 0, 0)))
       return null
 
     this.targetColor = Color.fromHex(hexTargetColor)
+    this.targetHSV = this.targetColor.toHSV()
 
     // initialize queue of pixels to process
     this.pxQueue = new Queue(this.width * this.height)
@@ -39,6 +40,8 @@ class Fill{
     return this.data
   }
 
+  // gets first pixel in queue, checks its color.
+  // If is source color, paint it and look for its neighbors
   _processQueue(){
     if (this.pxQueue.length === 0)
       return 0
@@ -52,10 +55,24 @@ class Fill{
 
     if (pxColor.equals(this.srcColor)){
       let added = this.addNeighbors(pxCoord)
-      if (added > 0)
+      // if (added > 0)
         this.setPixelColor(pxCoord, this.targetColor)
-      else
-        this.setPixelColor(pxCoord, new Color(0, 255, 0))
+      // else
+      //   this.setPixelColor(pxCoord, new Color(0, 255, 0))
+    }
+    else if (pxColor.isGray()){
+      // find point between black & white
+      let pxHSV = pxColor.toHSV(),
+          darkenedTarget = {
+            h: this.targetHSV.h,
+            s: this.targetHSV.s,
+            v: pxHSV.v
+          }
+      this.setPixelColor(pxCoord, Color.fromHSV(darkenedTarget))
+      this.addNeighbors(pxCoord)
+    }
+    else{
+      console.log(`not gray ${pxColor.toHex()}`)
     }
     return 1
   }

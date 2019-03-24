@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Mocha Tests</title>
+    <link href="/mocha/mocha.css" rel="stylesheet" />
+  </head>
+  <body>
+    <div id="mocha"></div>
+
+    <script src="/mocha/mocha.js"></script>
+    <script src="/chai/chai.js"></script>
+    <script src="/js/color.js"></script>
+    <script>
+      mocha.setup('tdd')
+      const assert = chai.assert
+    </script>
+    <script src="color.js"></script>
+
+    <script>
+      mocha.run()
+    </script>
+
+    <!-- <script>
+      debugger
+      var col = Color.fromHex('#2e2e2e')
+      var hsv = col.toHSV()
+
+      col = Color.fromHex('#ededed')
+      hsv = col.toHSV()
+
+      col = Color.fromHex('#0f0f0f')
+      hsv = col.toHSV()
+    </script> -->
+  </body>
+</html>

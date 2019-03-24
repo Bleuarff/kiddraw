@@ -20,6 +20,8 @@
   },
   "homepage": "https://github.com/bleuarff/kiddraw#readme",
   "devDependencies": {
-    "gulp": "^4.0.0"
+    "chai": "^4.2.0",
+    "gulp": "^4.0.0",
+    "mocha": "^6.0.2"
   }
 }
