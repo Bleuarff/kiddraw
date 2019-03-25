@@ -55,12 +55,9 @@ class Fill{
 
     if (pxColor.equals(this.srcColor)){
       let added = this.addNeighbors(pxCoord)
-      // if (added > 0)
-        this.setPixelColor(pxCoord, this.targetColor)
-      // else
-      //   this.setPixelColor(pxCoord, new Color(0, 255, 0))
+      this.setPixelColor(pxCoord, this.targetColor)
     }
-    else if (pxColor.isGray()){
+    else if (!pxColor.isBlackish()){
       // find point between black & white
       let pxHSV = pxColor.toHSV(),
           darkenedTarget = {
@@ -71,9 +68,9 @@ class Fill{
       this.setPixelColor(pxCoord, Color.fromHSV(darkenedTarget))
       this.addNeighbors(pxCoord)
     }
-    else{
-      console.log(`not gray ${pxColor.toHex()}`)
-    }
+    // else{
+    //   console.log(`not gray ${pxColor.toHex()}`)
+    // }
     return 1
   }
 

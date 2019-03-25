@@ -8,7 +8,7 @@ Vue.component('my-palette', {
   data: function(){
     return {
       // list available colors
-      palette: ['#ffffff', '#2f2f2f', '#ff0000', '#00ff00', '#0000ff', '#e86f00'],
+      palette: ['#ffffff', '#2f2f20', '#ff0000', '#00ff00', '#0000ff', '#e86f00'],
       selectedIdx: 2,
     }
   },

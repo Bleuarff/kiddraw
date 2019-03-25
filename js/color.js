@@ -36,54 +36,19 @@ class Color {
   }
 
   isGray(){
-    return this.r === this.g && this.g === this.b && this.r > 10
+    return this.r === this.g && this.g === this.b && this.r > 7
+  }
+
+  isBlackish(){
+    return this.r === this.g && this.g === this.b && this.r < 8
   }
 
   toHSV() {
-    var max = Math.max(this.r, this.g, this.b),
-        min = Math.min(this.r, this.g, this.b),
-        d = max - min,
-        h,
-        s = (max === 0 ? 0 : d / max),
-        v = max / 255
-
-    switch (max) {
-      case min: h = 0; break;
-      case this.r: h = (this.g - this.b) + d * (this.g < this.b ? 6: 0); h /= 6 * d; break;
-      case this.g: h = (this.b - this.r) + d * 2; h /= 6 * d; break;
-      case this.b: h = (this.r - this.g) + d * 4; h /= 6 * d; break;
-    }
-
-    return {
-      h: h,
-      s: s,
-      v: v
-    }
+    return colorsys.rgb2Hsv(this)
   }
 
   static fromHSV(hsv){
-    let {h, s, v} = hsv
-    var r, g, b, i, f, p, q, t;
-
-    i = Math.floor(h * 6);
-    f = h * 6 - i;
-    p = v * (1 - s);
-    q = v * (1 - f * s);
-    t = v * (1 - s * (1 - f))
-    switch (i % 6) {
-        case 0: r = v, g = t, b = p; break;
-        case 1: r = q, g = v, b = p; break;
-        case 2: r = p, g = v, b = t; break;
-        case 3: r = p, g = q, b = v; break;
-        case 4: r = t, g = p, b = v; break;
-        case 5: r = v, g = p, b = q; break;
-    }
-    return new Color(
-      Math.round(r * 255),
-      Math.round(g * 255),
-      Math.round(b * 255)
-    )
+    let {r, g, b} = colorsys.hsv2Rgb(hsv)
+    return new Color(r, g, b)
   }
-
-
 }

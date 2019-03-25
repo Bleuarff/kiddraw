@@ -3,7 +3,7 @@
 suite('Color', () => {
 
     suite('Red', () => {
-      const hsv = {h: 0, s: 1, v: 1}, rgb = new Color(255, 0, 0)
+      const hsv = {h: 0, s: 100, v: 100}, rgb = new Color(255, 0, 0)
       test('fromHSV', () => {
         const col = Color.fromHSV(hsv)
         assert.equal(col.r, rgb.r, 'red')
@@ -19,7 +19,7 @@ suite('Color', () => {
     })
 
     suite('Green', () => {
-      const hsv = {h: 120, s: 1, v: 1}, rgb = new Color(0, 255, 0)
+      const hsv = {h: 120, s: 100, v: 100}, rgb = new Color(0, 255, 0)
       test('fromHSV', () => {
         const col = Color.fromHSV(hsv)
         assert.equal(col.r, rgb.r, 'red')
@@ -35,7 +35,7 @@ suite('Color', () => {
     })
 
     suite('Blue', () => {
-      const hsv = {h: 240, s: 1, v: 1}, rgb = new Color(0, 0, 255)
+      const hsv = {h: 240, s: 100, v: 100}, rgb = new Color(0, 0, 255)
       test('fromHSV', () => {
         const col = Color.fromHSV(hsv)
         assert.equal(col.r, rgb.r, 'red')
@@ -67,7 +67,7 @@ suite('Color', () => {
     })
 
     suite('White', () => {
-      const hsv = {h: 0, s: 0, v: 1}, rgb = new Color(255, 255, 255)
+      const hsv = {h: 0, s: 0, v: 100}, rgb = new Color(255, 255, 255)
       test('fromHSV', () => {
         const col = Color.fromHSV(hsv)
         assert.equal(col.r, rgb.r, 'red')
@@ -83,7 +83,7 @@ suite('Color', () => {
     })
 
     suite('Darkgray', () => {
-      const hsv = {h: 0, s: 0, v: .18}, rgb = new Color(46, 46, 46)
+      const hsv = {h: 0, s: 0, v: 18}, rgb = new Color(45, 45, 45)
       test('fromHSV', () => {
         const col = Color.fromHSV(hsv)
         assert.equal(col.r, rgb.r, 'red')
