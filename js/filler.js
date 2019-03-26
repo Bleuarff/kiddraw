@@ -58,19 +58,17 @@ class Fill{
       this.setPixelColor(pxCoord, this.targetColor)
     }
     else if (!pxColor.isBlackish()){
-      // find point between black & white
+      // color is a darker target color.
+      // Decrement value by difference between full value and pixel value
       let pxHSV = pxColor.toHSV(),
           darkenedTarget = {
             h: this.targetHSV.h,
             s: this.targetHSV.s,
-            v: pxHSV.v
+            v: this.targetHSV.v - (100 - pxHSV.v)
           }
       this.setPixelColor(pxCoord, Color.fromHSV(darkenedTarget))
       this.addNeighbors(pxCoord)
     }
-    // else{
-    //   console.log(`not gray ${pxColor.toHex()}`)
-    // }
     return 1
   }
 
