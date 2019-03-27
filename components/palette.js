@@ -3,7 +3,6 @@
 // Show color palette & send event on selection
 Vue.component('my-palette', {
   props: {
-    color: {type: String, default: 'ff0000'}
   },
   data: function(){
     return {

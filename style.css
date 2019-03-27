@@ -23,7 +23,8 @@
   padding: 1em .2em;
 }
 
-#palette .color{
+#palette .color,
+#tools .tool{
   width: 40px;
   height: 40px;
   border: 1px solid #1b1b1b;
@@ -32,7 +33,17 @@
   cursor: pointer;
 }
 
-#palette .color.selected{
+#palette .color.selected,
+#tools .tool.selected{
   border-width: 3px;
   border-color: #5e8e6d;
+}
+
+#tools{
+  display: flex;
+  flex-flow: column;
+}
+
+#tools .tool{
+
 }
